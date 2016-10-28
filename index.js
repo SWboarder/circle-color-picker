@@ -21,7 +21,6 @@ function doStuff(){
 	container.appendChild(canvas);
 
 	const ctx = canvas.getContext('2d');
-	console.log(ctx);
 	ctx.lineWidth = LINE_WIDTH;
 
 	var grad= ctx.createLinearGradient(C, C, C, 0);
@@ -72,10 +71,8 @@ function doStuff(){
 	function show(){
 		var x_pick = event.layerX;
 	  	var y_pick = event.layerY;
-	  	console.log(x_pick);
 	  	var pixel = ctx.getImageData(x_pick, y_pick, 1, 1);
 	  	var data = pixel.data;
-	  	console.log(data[0]);
 	  	var rgb = 'rgb(' + data[0] + ',' + data[1] + ',' + data[2] + ')';
 	  	html[0].style.backgroundColor=  rgb;
 	  	text.textContent = rgb;
