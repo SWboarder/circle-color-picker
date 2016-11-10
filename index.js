@@ -68,26 +68,24 @@ function doStuff(){
 		ctx.stroke();
 	}
 
-	function show(){
-		var x_pick = event.layerX;
-	  	var y_pick = event.layerY;
+	canvas.addEventListener('mousemove', function show(event){
+		var x_pick = event.clientX - canvas.offsetLeft;
+	  	var y_pick = event.clientY - canvas.offsetTop;
 	  	var pixel = ctx.getImageData(x_pick, y_pick, 1, 1);
 	  	var data = pixel.data;
 	  	var rgb = 'rgb(' + data[0] + ',' + data[1] + ',' + data[2] + ')';
 	  	html[0].style.backgroundColor=  rgb;
 	  	text.textContent = rgb;
 	  	text.style.color = 'rgb(' + (255-data[0]) + ',' + (255-data[1]) + ',' + (255-data[2]) + ')';
-	}
+	});
 
-	function pick(){
-		var x_pick = event.layerX;
-	  	var y_pick = event.layerY;
+	canvas.addEventListener('mousedown', function pick(event){
+		var x_pick = event.clientX - canvas.offsetLeft;
+	  	var y_pick = event.clientY - canvas.offsetTop;
 	  	var pixel = ctx.getImageData(x_pick, y_pick, 1, 1);
+	  	console.log(pixel);
 	  	var data = pixel.data;
 	  	var rgb = 'rgb(' + data[0] + ',' + data[1] + ',' + data[2] + ')';
 	  	picked_color.style.backgroundColor = rgb;
-	}
-
-	canvas.addEventListener('mousemove', show);
-	canvas.addEventListener('mousedown', pick);
+	});
 }
